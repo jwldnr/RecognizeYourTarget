@@ -10,6 +10,8 @@ local WINDOW_MANAGER = GetWindowManager()
 local GetAnimationManager = GetAnimationManager
 local ANIMATION_MANAGER = GetAnimationManager()
 
+local RETICLE = RETICLE
+
 local EVENT_ADD_ON_LOADED = EVENT_ADD_ON_LOADED
 local EVENT_PLAYER_ACTIVATED = EVENT_PLAYER_ACTIVATED
 local EVENT_RETICLE_TARGET_CHANGED = EVENT_RETICLE_TARGET_CHANGED
@@ -193,8 +195,6 @@ function Addon:BuildGuildMemberIndex()
     end
   end
 end
-
-local RETICLE = RETICLE
 
 function Addon:SetupControls()
   local control = WINDOW_MANAGER:CreateTopLevelWindow("RecognizeYourTarget")
