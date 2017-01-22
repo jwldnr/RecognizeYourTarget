@@ -1,0 +1,17 @@
+<GuiXml>
+    <Animations>
+        <AnimationTimeline name="RecognizeYourTargetAnimation">
+            <Animations>
+                <AlphaAnimation duration="50" startAlpha="0" endAlpha="0"/>
+                <AlphaAnimation delay="50" duration="50" startAlpha="0" endAlpha="1"/>
+            </Animations>
+        </AnimationTimeline>
+    </Animations>
+    <Controls>
+        <Label name="RecognizeYourTargetName" font="$(MEDIUM_FONT)|14|thick-outline" color="INTERFACE_COLOR_TYPE_TEXT_COLORS:INTERFACE_TEXT_COLOR_SELECTED" virtual="true"/>
+        <Texture name="RecognizeYourTargetIcon" virtual="true">
+            <Dimensions x="40" y="40"/>
+            <Anchor point="RIGHT" relativeTo="RecognizeYourTargetName" relativePoint="LEFT" offsetX="0" offsetY="0"/>
+        </Texture>
+    </Controls>
+</GuiXml>
