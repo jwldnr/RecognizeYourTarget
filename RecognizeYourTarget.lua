@@ -101,19 +101,19 @@ function Addon:FadeOutControl()
 end
 
 function Addon:AddFriend(name, friendIndex)
-  if (name == self.playerName or name == self.playerUserId) then return end
+  if (not name or name == self.playerName or name == self.playerUserId) then return end
 
   self.friendIndex[name] = friendIndex
 end
 
 function Addon:AddGroupMember(name, memberIndex)
-  if (name == self.playerName or name == self.playerUserId) then return end
+  if (not name or name == self.playerName or name == self.playerUserId) then return end
 
   self.groupMemberIndex[name] = memberIndex
 end
 
 function Addon:AddGuildMember(name, guildId, memberIndex)
-  if (name == self.playerName or name == self.playerUserId) then return end
+  if (not name or name == self.playerName or name == self.playerUserId) then return end
 
   if (not self.guildMemberIndex[name]) then
     self.guildMemberIndex[name] = {}
