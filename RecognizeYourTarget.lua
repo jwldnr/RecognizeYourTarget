@@ -260,15 +260,6 @@ function Addon:OnTargetChanged()
       self.icon:SetTexture(FRIEND_ICON)
 
       self:FadeInControl()
-    elseif (IsTargetGroupMember("reticleover")) then
-      local name = GetUnitName("reticleover")
-
-      self.nameLabel:SetText(name)
-      self.infoLabel:SetColor(1, .5, .1)
-      self.infoLabel:SetText("<group>")
-      self.icon:SetTexture(GROUP_MEMBER_ICON)
-
-      self:FadeInControl()
     elseif (IsTargetGuildMember("reticleover")) then
       local displayName = GetUnitDisplayName("reticleover")
       local name = GetUnitName("reticleover")
@@ -280,6 +271,15 @@ function Addon:OnTargetChanged()
       self.infoLabel:SetColor(.3, .8, .3)
       self.infoLabel:SetText("<"..GetGuildName(guildId)..">")
       self.icon:SetTexture(GetFinalGuildRankTextureLarge(guildId, rankIndex))
+
+      self:FadeInControl()
+    elseif (IsTargetGroupMember("reticleover")) then
+      local name = GetUnitName("reticleover")
+
+      self.nameLabel:SetText(name)
+      self.infoLabel:SetColor(1, .5, .1)
+      self.infoLabel:SetText("<group>")
+      self.icon:SetTexture(GROUP_MEMBER_ICON)
 
       self:FadeInControl()
     else
