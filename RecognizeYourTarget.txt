@@ -1,7 +1,7 @@
 ## Title: |cff8800RecognizeYourTarget|r v1.0
 ## Description: Do you know your target?
 ## Author: myslex
-## APIVersion: 100017
+## APIVersion: 100020
 ## Version: 1.0
 
 RecognizeYourTarget.lua

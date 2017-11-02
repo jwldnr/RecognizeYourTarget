@@ -1,5 +1,5 @@
 local Addon = {}
-Addon.name = "RecognizeYourTarget"
+Addon.name = 'RecognizeYourTarget'
 
 local GetEventManager = GetEventManager
 local EVENT_MANAGER = GetEventManager()
@@ -64,9 +64,9 @@ local CENTER = CENTER
 
 local ANIMATION_ALPHA = ANIMATION_ALPHA
 
-local FRIEND_ICON = "EsoUI/Art/MainMenu/menuBar_social_up.dds"
-local GROUP_MEMBER_ICON = "EsoUI/Art/MainMenu/menuBar_group_up.dds"
-local GUILD_MEMBER_ICON = "EsoUI/Art/MainMenu/menuBar_guilds_up.dds"
+local FRIEND_ICON = 'EsoUI/Art/MainMenu/menuBar_social_up.dds'
+local GROUP_MEMBER_ICON = 'EsoUI/Art/MainMenu/menuBar_group_up.dds'
+local GUILD_MEMBER_ICON = 'EsoUI/Art/MainMenu/menuBar_guilds_up.dds'
 
 local function IsTargetFriend(unitTag)
   return Addon:GetFriendIndexByName(GetUnitDisplayName(unitTag)) ~= nil
@@ -132,7 +132,7 @@ function Addon:BuildFriendIndex()
 end
 
 function Addon:GetFriendIndexByName(name)
-  if (not name or name == "") then
+  if (not name or name == '') then
     return nil
   end
 
@@ -152,7 +152,7 @@ function Addon:BuildGroupMemberIndex()
 end
 
 function Addon:GetGroupMemberIndexByName(name)
-  if (not name or name == "") then
+  if (not name or name == '') then
     return nil
   end
 
@@ -168,7 +168,7 @@ function Addon:GetGuildMemberIndex(guildId, name)
 end
 
 function Addon:GetGuildMemberIndexByName(name)
-  if (not name or name == "") then
+  if (not name or name == '') then
     return nil
   end
 
@@ -197,25 +197,25 @@ function Addon:BuildGuildMemberIndex()
 end
 
 function Addon:SetupControls()
-  local control = WINDOW_MANAGER:CreateTopLevelWindow("RecognizeYourTarget")
-  control:SetAnchor(CENTER, RETICLE.control, CENTER, 0, -100)
+  local control = WINDOW_MANAGER:CreateTopLevelWindow('RecognizeYourTarget')
+  control:SetAnchor(CENTER, RETICLE.control, CENTER, 0, - 100)
   control:SetAlpha(0)
 
   self.control = control
 
-  local nameLabel = WINDOW_MANAGER:CreateControl("RecognizeYourTargetName", control, CT_LABEL)
+  local nameLabel = WINDOW_MANAGER:CreateControl('RecognizeYourTargetName', control, CT_LABEL)
   nameLabel:SetAnchor(CENTER, control, CENTER, 0, 0)
-  nameLabel:SetFont("$(BOLD_FONT)|20|soft-shadow-thick")
+  nameLabel:SetFont('$(BOLD_FONT)|20|soft-shadow-thick')
 
   self.nameLabel = nameLabel
 
-  local infoLabel = WINDOW_MANAGER:CreateControl("RecognizeYourTargetInfo", nameLabel, CT_LABEL)
+  local infoLabel = WINDOW_MANAGER:CreateControl('RecognizeYourTargetInfo', nameLabel, CT_LABEL)
   infoLabel:SetAnchor(TOP, nameLabel, BOTTOM, 0, 0)
-  infoLabel:SetFont("$(BOLD_FONT)|14|soft-shadow-thick")
+  infoLabel:SetFont('$(BOLD_FONT)|14|soft-shadow-thick')
 
   self.infoLabel = infoLabel
 
-  local icon = WINDOW_MANAGER:CreateControl("RecognizeYourTargetIcon", nameLabel, CT_TEXTURE)
+  local icon = WINDOW_MANAGER:CreateControl('RecognizeYourTargetIcon', nameLabel, CT_TEXTURE)
   icon:SetAnchor(RIGHT, nameLabel, LEFT, 0, 0)
   icon:SetHeight(32)
   icon:SetWidth(32)
@@ -241,44 +241,44 @@ function Addon:OnPlayerActivated()
   EVENT_MANAGER:UnregisterForEvent(self.name, EVENT_PLAYER_ACTIVATED)
 
   local color = ZO_ColorDef:New(1, .7, 1)
-  CHAT_SYSTEM:AddMessage(color:Colorize(self.name.." loaded"))
+  CHAT_SYSTEM:AddMessage(color:Colorize(self.name..' loaded'))
 
-  self.playerName = GetUnitName("player")
+  self.playerName = GetUnitName('player')
   self.playerUserId = GetDisplayName()
 
   self:BuildIndex()
 end
 
 function Addon:OnTargetChanged()
-  if (DoesUnitExist("reticleover") and IsUnitPlayer("reticleover")) then
-    if (IsTargetFriend("reticleover")) then
-      local name = GetUnitName("reticleover")
+  if (DoesUnitExist('reticleover') and IsUnitPlayer('reticleover')) then
+    if (IsTargetFriend('reticleover')) then
+      local name = GetUnitName('reticleover')
 
       self.nameLabel:SetText(name)
       self.infoLabel:SetColor(.5, .7, .8)
-      self.infoLabel:SetText("<friend>")
+      self.infoLabel:SetText('<friend>')
       self.icon:SetTexture(FRIEND_ICON)
 
       self:FadeInControl()
-    elseif (IsTargetGuildMember("reticleover")) then
-      local displayName = GetUnitDisplayName("reticleover")
-      local name = GetUnitName("reticleover")
+    elseif (IsTargetGuildMember('reticleover')) then
+      local displayName = GetUnitDisplayName('reticleover')
+      local name = GetUnitName('reticleover')
 
       local guildId, memberIndex = self:GetGuildMemberIndexByName(displayName)
       local _, _, rankIndex = GetGuildMemberInfo(guildId, memberIndex)
 
       self.nameLabel:SetText(name)
       self.infoLabel:SetColor(.3, .8, .3)
-      self.infoLabel:SetText("<"..GetGuildName(guildId)..">")
+      self.infoLabel:SetText('<'..GetGuildName(guildId)..'>')
       self.icon:SetTexture(GetFinalGuildRankTextureLarge(guildId, rankIndex))
 
       self:FadeInControl()
-    elseif (IsTargetGroupMember("reticleover")) then
-      local name = GetUnitName("reticleover")
+    elseif (IsTargetGroupMember('reticleover')) then
+      local name = GetUnitName('reticleover')
 
       self.nameLabel:SetText(name)
       self.infoLabel:SetColor(1, .5, .1)
-      self.infoLabel:SetText("<group>")
+      self.infoLabel:SetText('<group>')
       self.icon:SetTexture(GROUP_MEMBER_ICON)
 
       self:FadeInControl()
